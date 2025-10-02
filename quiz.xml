@@ -1038,8 +1038,8 @@
 	    first sentence, and its conclusion comes after the conclusion indicator "therefore".)
 
 	    Remember: whether are argument is valid does not depend on whether 
-	    the premises are *in fact true*. So, even though both premises of this argument
-	    are true, that fact has no bearing on whether the argument is valid! Whether an
+	    the premises (or the conclusion) are *in fact true*. So, even though both premises of this argument
+	    are true (and so is the conclusion!), that fact has no bearing on whether the argument is valid! Whether an
 	    argument is valid is a question solely about the logic --- the reasoning itself ---
 	    that connects the premises to the conclusion; an argument is valid when 
 	    we can truthfully assert one (or both) of the following 
@@ -1049,7 +1049,7 @@
 
 	    *If* the argument's premises were *all true*, then the conclusion *would have to be true too*.
 
-	    We cannot assert these of the argument above. Of course it is true
+	    We cannot truthfully assert these of the argument above. Of course it is true
 	    that MA is in New England and that if Boston is in New England then it is 
 	    in the USA. But do those two things together necessarily imply that
 	    Boston is in the USA? No! As far as the premises are concerned, Boston could
