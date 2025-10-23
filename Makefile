@@ -1,23 +1,18 @@
-TS_FILES := $(wildcard *.ts)
-
-JS_FILES := $(TS_FILES:.ts=.js)
-
 XML_FILES := $(wildcard *.xml)
 
 JSON_FILES := $(XML_FILES:.xml=.json)
 
-JPG_FILES := $(wildcard *.jpg)
-
 .PHONY: all
 
-all: $(JS_FILES) $(JSON_FILES) $(JPG_FILES) 
+all: quizScript.js $(JSON_FILES) 
 
-%.js: %.ts
+quizScript.js: quizScript.ts
 	- tsc $< 
-	scpToWebsite.sh -f quizzes/logic $@
 %.json: %.xml
-	xmltojson $< > $@ && scpToWebsite.sh -f quizzes/logic $@
-%.jpg: 
-	scpToWebsite.sh -f quizzes/logic $@
-index.html:
-	scpToWebsite.sh -f quizzes/logic index.html
+	perl -pe 's|quiz.json|$@|' quizScript.js > _.js
+	perl -pe 's|(script>)(</script)|my $$scr = do { local $$/; open my $$fh, "<", "_.js" or die $$!; <$$fh> }; $$1 . $$scr . $$2|xe' baseindex.html > index.html
+	rm _.js
+	xmltojson $< > $@ && scpToWebsite.sh -f quizzes/$(basename $<) $@
+	rm $@
+	scpToWebsite.sh -f quizzes/$(basename $<) index.html
+	rm index.html
